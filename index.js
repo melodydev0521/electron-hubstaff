@@ -28,7 +28,7 @@ function createMainWindow() {
         minHeight: 680,
         icon: './src/icon.jpeg',
         webPreferences: {
-            devTools: true,
+            devTools: false,
             nodeIntegration: true,
             preload: require('path').join(__dirname, 'preload.js')
         }
