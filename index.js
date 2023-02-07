@@ -19,10 +19,16 @@ function onClosed() {
 
 function createMainWindow() {
     const win = new BrowserWindow({
-        title: app.getName() + ' v' + app.getVersion(),
-        width: 800,
-        height: 600,
+        autoHideMenuBar: true,
+        title: require('./package.json').productName,
+        height: 680,
+        width: 340,
+        minWidth: 340,
+        maxWidth: 500,
+        minHeight: 680,
+        icon: './src/icon.jpeg',
         webPreferences: {
+            devTools: false,
             nodeIntegration: true,
             preload: require('path').join(__dirname, 'preload.js')
         }

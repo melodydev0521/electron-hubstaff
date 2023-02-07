@@ -1,6 +1,36 @@
 'use strict';
 const sharp = require('sharp');
 
+let captureTool, isCapturing = true;
+
+window.onload = () => {
+    startCaptuer();
+}
+
+const toggleCaptureBtn = document.querySelector("#toggleCaptureBtn");
+
+const toggleCapture = () => {
+    if (!isCapturing) {
+        startCaptuer();
+    } else {
+        stopCapture();
+    }
+}
+
+toggleCaptureBtn.addEventListener('click', toggleCapture);
+
+const startCaptuer = () => {
+    toggleCaptureBtn.innerHTML = "Stop";
+    isCapturing = true;
+    captureTool = setInterval(() => captureScreen(), 2000);
+}
+
+const stopCapture = () => {
+    toggleCaptureBtn.innerHTML = "Start";
+    isCapturing = false
+    clearInterval(captureTool);
+}
+
 const captureScreen = () => {
     navigator.mediaDevices.getUserMedia({
         audio: false,
