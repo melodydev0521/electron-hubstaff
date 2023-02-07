@@ -1,0 +1,41 @@
+{
+    "name": "electron-hubstaff",
+    "productName": "electron-hubstaff",
+    "version": "1.2.1",
+    "description": "Electron desktopCapturer test tool",
+    "license": "MIT",
+    "repository": "https://github.com/WebMelody0822/electron-hubstaff",
+    "author": {
+        "name": "smith",
+        "email": "contact@andras.online",
+        "url": "http://andras.online"
+    },
+    "scripts": {
+        "test": "xo",
+        "start": "electron .",
+        "build": "electron-packager . --out=dist --asar --overwrite --all",
+        "buildx64linux": "electron-packager . --out=dist --asar --overwrite --platform=linux --arch=x64",
+        "buildx64win": "electron-packager . --out=dist --asar --overwrite --platform=win32 --arch=x64"
+    },
+    "dependencies": {
+        "electron-debug": "^3.0.1",
+        "electron-unhandled": "^2.2.0",
+        "sharp": "^0.31.3"
+    },
+    "devDependencies": {
+        "devtron": "^1.4.0",
+        "electron": "^6.1.9",
+        "electron-packager": "^14.0.3",
+        "xo": "^0.23.0"
+    },
+    "xo": {
+        "space": 4,
+        "envs": [
+            "node",
+            "browser"
+        ],
+        "ignores": [
+            "adapter.js"
+        ]
+    }
+}
