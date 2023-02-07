@@ -1,13 +1,25 @@
 'use strict';
 const sharp = require('sharp');
+const fs = require('fs');
+const homeDir = require('os').homedir();
+const productName = require('../package.json').productName;
 
-let captureTool, isCapturing = true;
+const toggleCaptureBtn = document.querySelector("#toggleCaptureBtn");
+const digitalClock = document.querySelector("#digitalClock");
+const nameLabel = document.querySelector("#name-label");
+
+let captureTool,
+    digitalClockInterval ,
+    isCapturing = true,
+    trackSeconds = 0;
 
 window.onload = () => {
+    console.log(localStorage);
+    nameLabel.innerHTML = localStorage.getItem("name");
+    renderDigitalClock(trackSeconds);
     startCaptuer();
 }
 
-const toggleCaptureBtn = document.querySelector("#toggleCaptureBtn");
 
 const toggleCapture = () => {
     if (!isCapturing) {
@@ -20,15 +32,22 @@ const toggleCapture = () => {
 toggleCaptureBtn.addEventListener('click', toggleCapture);
 
 const startCaptuer = () => {
-    toggleCaptureBtn.innerHTML = "Stop";
+    toggleCaptureBtn.classList.add('active');
+    digitalClock.classList.add("active");
     isCapturing = true;
-    captureTool = setInterval(() => captureScreen(), 2000);
+    digitalClockInterval = setInterval(() => {
+        renderDigitalClock(trackSeconds);
+        trackSeconds ++;
+    }, 1000);
+    captureTool = setInterval(captureScreen, 2000);
 }
 
 const stopCapture = () => {
-    toggleCaptureBtn.innerHTML = "Start";
+    toggleCaptureBtn.classList.remove('active');
+    digitalClock.classList.remove("active");
     isCapturing = false
     clearInterval(captureTool);
+    clearInterval(digitalClockInterval);
 }
 
 const captureScreen = () => {
@@ -65,10 +84,17 @@ const captureScreen = () => {
             var data = matches[2];
             var buffer = Buffer.from(data, 'base64');
 
+            if (!fs.existsSync(`${homeDir}/Documents/${productName}`)) {
+                fs.mkdir(`${homeDir}/Documents/${productName}`, err => {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            }
             // Resize the file
             sharp(buffer)
                 .resize(800, 600)
-                .toFile(`assets/${Date.now()}.jpeg`, (err, info) => {
+                .toFile(`${homeDir}/Documents/${productName}/${Date.now()}.jpeg`, (err, info) => {
                     console.log(info);
                 });
 
@@ -76,4 +102,17 @@ const captureScreen = () => {
         .catch(error => {
             alert(JSON.stringify(error, null, 2));
         });
+}
+
+const renderDigitalClock = seconds => {
+    var hh, mm, ss;
+    hh = parseInt(seconds / 3600);
+    mm = parseInt(seconds % 3600 / 60);
+    ss = parseInt(seconds % 60);
+
+    hh = hh < 10 ? `0${hh}` : hh;
+    mm = mm < 10 ? `0${mm}` : mm;
+    ss = ss < 10 ? `0${ss}` : ss;
+
+    digitalClock.innerHTML = `${hh} : ${mm} : ${ss}`;
 }

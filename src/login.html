@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+
+    <div class="form-wrapper">
+        <div class="login-form">
+            <div class="logo-icon">
+                ICON
+            </div>
+            <!-- <div class="validation-form">User Name required.</div> -->
+            <input class="form-input" type="text" placeholder="User Name" id="uName" >
+            <input class="form-input" type="password" placeholder="Password" id="uPsw">
+
+            <button class="form-submit" id="loginBtn">Log In</button>
+            <!-- <a href="./signup.html" class="form-"/ -->
+        </div>
+    </div>
+
+    <script>
+
+        const nameInpt = document.querySelector("#uName");
+        const pswInpt = document.querySelector("#uPsw");
+
+        const loginBtn = document.querySelector("#loginBtn");
+
+
+        loginBtn.onclick = () => {
+            if (!nameInpt.value) {
+                alert("User Name is required!");
+                return;
+            }
+            if (!pswInpt.value) {
+                alert("Password is required!");
+                return;
+            }
+            localStorage.setItem("name", nameInpt.value);
+            location.href = "./index.html";
+        }
+
+
+    </script>
+</body>
+</html>

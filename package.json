@@ -20,6 +20,7 @@
     "dependencies": {
         "electron-debug": "^3.0.1",
         "electron-unhandled": "^2.2.0",
+        "os": "^0.1.2",
         "sharp": "^0.31.3"
     },
     "devDependencies": {

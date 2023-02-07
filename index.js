@@ -28,7 +28,7 @@ function createMainWindow() {
         minHeight: 680,
         icon: './src/icon.jpeg',
         webPreferences: {
-            devTools: false,
+            devTools: true,
             nodeIntegration: true,
             preload: require('path').join(__dirname, 'preload.js')
         }
@@ -37,7 +37,7 @@ function createMainWindow() {
     const url = require('url').format({
         protocol: 'file',
         slashes: true,
-        pathname: require('path').join(__dirname, 'src/index.html')
+        pathname: require('path').join(__dirname, 'src/login.html')
     });
 
     win.loadURL(url);

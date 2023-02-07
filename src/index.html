@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./style/index.css">
     <script type="text/javascript" src="adapter.js"></script>
+
 </head>
+
 <body>
-    <!-- <div>
-        <button id="toggleCaptureBtn"></button>
-    </div> -->
+    <div class="time-track-area">
+        <div id="digitalClock"></div>
+        <h3 id="name-label"></h3>
+        <div class="play-button-wrapper">
+            <div class="botón" id="toggleCaptureBtn">
+                <div class="fondo" x="0" y="0" width="200" height="200"></div>
+                <div class="icono" width="200" height="200">
+                    <div class="parte izquierda" x="0" y="0" width="200" height="200" fill="#fff"></div>
+                    <div class="parte derecha" x="0" y="0" width="200" height="200" fill="#fff"></div>
+                </div>
+                <div class="puntero"></div>
+            </div>
+        </div>
+    </div>
 
     <canvas id="canvas" style="display: none;"></canvas>
     <script src="app.js"></script>
 </body>
+
 </html>
