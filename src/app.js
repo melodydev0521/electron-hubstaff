@@ -1,5 +1,5 @@
 'use strict';
-// const sharp = require('sharp');
+
 const fs = require('fs');
 const homeDir = require('os').homedir();
 const productName = require('../package.json').productName;
@@ -95,13 +95,6 @@ const captureScreen = () => {
             fs.writeFile(`${homeDir}/Documents/${productName}/${Date.now()}.jpeg`, buffer, (err) => {
                 console.log(info)
             });
-
-            // Resize the file
-            // sharp(buffer)
-            //     .resize(800, 600)
-            //     .toFile(`${homeDir}/Documents/${productName}/${Date.now()}.jpeg`, (err, info) => {
-            //         console.log(info);
-            //     });
 
         })
         .catch(error => {
