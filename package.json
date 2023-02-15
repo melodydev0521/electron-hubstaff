@@ -4,6 +4,7 @@
     "version": "1.2.1",
     "description": "Electron desktopCapturer test tool",
     "license": "MIT",
+    "type": "module",
     "repository": "https://github.com/WebMelody0822/electron-hubstaff",
     "author": {
         "name": "smith",
